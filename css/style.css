@@ -1,0 +1,9 @@
+h1 {
+	font-family: 'Nunito', sans-serif;
+	font-weight: 700;
+	text-align: center;
+}
+
+.half-background {
+  background: linear-gradient(to top, orange 50%, transparent 50%);
+}
