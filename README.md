@@ -131,6 +131,57 @@ Note that in this use of crossfilter, I had to do two things:
 1. Copy the results from the array I wanted to return to prevent any reference errors that might come up.
 2. Remove the filter on the existing crossfilter by calling `eventDimension.filterAll()` before returning.  Because crossfilter is meant to be used among multiple views, filters remain in place until they are removed.
 
+I later moved the creation of crossfilter dimensions to the `initialize()` method, since creating dimensions is computationally expensive:
+
+```javascript
+// Set up dimensions for crossfilter once, because setting up dimensions is expensive
+dObj.songNameDimension   = dObj.songsCrossfilter.dimension(d => d.song_name);    
+dObj.artistNameDimension = dObj.songsCrossfilter.dimension(d => d.song_artist);
+dObj.eventDimension      = dObj.songsCrossfilter.dimension(d => d.event);
+```
+
+While I was able to answer most of my queries using crossfilter, there were a few queries that I needed to brute-force.  Namely, counting the number of band members that Creo Worship has ever had, and the number of different events that had different roles present (like the number of events that had strings players or backing vocalists).  However, I will highlight only the most complex query: the top ten artists of all time by the number of different songs played.
+
+Crossfilter doesn't allow grouping along different dimensions, so I decided to support this by setting up a few data structures upon construction of the data object.  I needed to construct an object with the following structure:
+```javascript
+{
+  artist_name: [song_name_1, song_name_2, ...],
+  artist_name: [song_name_1, ...]
+}
+```
+After this object was constructed, I could then iterate through each key:value pair and produce an array with the following values:
+```javascript
+[
+  {key: artist_name, value: song_count},
+  ...
+]
+```
+This array could easily be sorted afterwards.  Thie final implementation of this construction involved two helper methods that were called in `initialize()`:
+
+```javascript
+setupArtistsAndSongs(d) {
+  let dObj = this;
+  let artist = d.song_artist;
+  if (!dObj.artistsAndSongs.hasOwnProperty(artist)) {
+    dObj.artistsAndSongs[artist] = [];
+  }
+  if (!dObj.artistsAndSongs[artist].includes(d.song_name)) {
+    dObj.artistsAndSongs[artist].push(d.song_name);
+  }
+}
+
+setupArtistsAndSongsCounts() {
+  let dObj = this;
+  for (let a of Object.keys(dObj.artistsAndSongs)) {
+    dObj.artistsAndSongsCounts.push({
+      key: a,
+      value: dObj.artistsAndSongs[a].length
+    });
+  }
+  dObj.artistsAndSongsCounts = dObj.artistsAndSongsCounts.sort((a, b) => b.value - a.value);
+}
+```
+
 ## Scratchpad
 Sources:
 - Textures for d3: https://riccardoscalco.it/textures/
