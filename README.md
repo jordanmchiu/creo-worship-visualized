@@ -182,6 +182,9 @@ setupArtistsAndSongsCounts() {
 }
 ```
 
+## The Song Chart
+Now that I had built up all the back-end data objects that I needed, it was time to start on the charts themselves.  I knew that I wanted to start with a simple bar chart to work with the songs data: the top ten songs of all time by number of times sung (with an optional event parameter to filter by).
+
 ## Scratchpad
 Sources:
 - Textures for d3: https://riccardoscalco.it/textures/

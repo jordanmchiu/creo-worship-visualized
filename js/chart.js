@@ -4,7 +4,7 @@ class Chart {
       parentElement: _config.parentElement,
       width: _config.width || 600,
       height: _config.height || 500,
-      margin: _config.margin || { top: 0, bottom: 0, right: 0, left: 0 },
+      margin: _config.margin || { top: 10, bottom: 10, right: 10, left: 20 },
     }
   }
 
@@ -22,7 +22,7 @@ class Chart {
       	.attr('width', vis.width);
 
     vis.gsOffset = window.innerHeight / 5;
-
+    // vis.gsOffset = 0;
     // If there's anything else that relates to all components, we should handle it here.
   }
 }

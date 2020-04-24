@@ -136,6 +136,10 @@ class DataObject {
   getTopTenSongsByEvent(eventName) {
     let dObj = this;
 
+    if (!eventName || eventName === 'all') {
+      return dObj.getTopTenSongs();
+    }
+
     // Set up a filter by event name
     dObj.eventDimension.filter(d => d === eventName);
 
