@@ -185,9 +185,7 @@ class DataObject {
   // Return the total number of different songs ever played
   getNumberOfUniqueSongs() {
     let dObj = this;
-
-    let songNameDimension = dObj.songsCrossfilter.dimension(d => d.song_name);
-    let songNameGroup = songNameDimension.group();
+    let songNameGroup = dObj.songNameDimension.group();
     return songNameGroup.all().length;
   }
 
