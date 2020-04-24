@@ -54,3 +54,16 @@ dataObject = new DataObject([
 dataObject.initialize().then(msg => {
   setup();
 });
+
+/*
+ * The following code is for Alan's chart
+ */
+$(document).ready(function()
+{
+  $("#form-event-selector").change(function()
+  {
+    songsChart.selectedEvent = null;
+    songsChart.internalIndex = null;
+    songsChart.update();
+  });
+});

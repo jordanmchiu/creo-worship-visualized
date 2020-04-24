@@ -9,8 +9,9 @@ class SongsChart extends Chart {
       .attr('transform', `translate(${vis.config.margin.left / 3},${vis.config.margin.top / 3})`);
     // Define events and chart colours organized according to
     // the layout on the page
-    vis.events      = ['',        'exp_nght', 'ya_worship'];
-    vis.chartColors = ['#79a158', '#a19e97',  '#d18636'   ];
+    vis.selectedEvent = null;
+    vis.events      = ['all',     'exp_nght', 'ya_worship', 'worship_wednesday', 'creo_monday', 'creo_friday', 'camp'];
+    vis.chartColors = ['#79a158', '#a19e97',  '#d18636'   , '#d25aa2',           '#61b8c5',     '#c1c763',     '#3adc6c'];
 
     // Horizontal bar chart: x is numerical, y is categorical
     vis.xValue = d => d.value;
@@ -24,9 +25,14 @@ class SongsChart extends Chart {
         .sections(d3.selectAll('#container-1 .sections > div'))
         .offset(vis.gsOffset)
         .on('active', function(i) {
-          console.log('Active index: ' + i);
-          vis.index = i;
-          if (vis.index < 3) { vis.update(); }
+          if (i < 3) {
+            vis.internalIndex = i;
+            vis.selectedEvent = vis.events[vis.internalIndex];
+          } else if (i === 3) {
+            vis.selectedEvent = null;
+            vis.internalIndex = null;
+          }
+          vis.update(); 
         });
 
     console.log('initVis!');
@@ -37,13 +43,15 @@ class SongsChart extends Chart {
 
     let m = vis.config.margin
 
-    vis.colorValue = vis.chartColors[vis.index];
-
-    vis.dataToRender = [
-      dataObject.getTopTenSongs(),
-      dataObject.getTopTenSongsByEvent('exp_nght'),
-      dataObject.getTopTenSongsByEvent('ya_worship')
-    ][vis.index];
+    if (!vis.selectedEvent) {
+      vis.selectedEvent = $("input[name='event-selector']:checked").val();
+    }
+    if (!vis.internalIndex) {
+      vis.internalIndex = vis.events.indexOf(vis.selectedEvent);
+    } 
+    console.log(vis.internalIndex);
+    vis.colorValue = vis.chartColors[vis.internalIndex];
+    vis.dataToRender = dataObject.getTopTenSongsByEvent(vis.selectedEvent);
 
     vis.yScale = d3.scaleBand()
       .domain(vis.dataToRender.map(d => d.key))
