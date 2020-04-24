@@ -10,7 +10,13 @@ h3 {
 }
 
 .half-background {
-  background: linear-gradient(to top, orange 50%, transparent 50%);
+  background: linear-gradient(to top, transparent 25%, orange 25% 75%, transparent 75%);
+}
+
+.song-bar-label {
+  font-weight: 700;
+  padding-left: 5px;
+  mix-blend-mode: color-burn;
 }
 
 /* CSS taken from graph-scroll demo */
@@ -33,10 +39,10 @@ body {
 
 .sections > div{
   opacity: .2;
-  margin-bottom: 500px;
+  margin-bottom: 200px;
 }
 .sections > div:last-child{
-  margin-bottom: 500px;
+  margin-bottom: 400px;
 }
 .sections > div.graph-scroll-active{
   opacity: 1;
@@ -69,7 +75,7 @@ body {
     padding: 10px;
     border-top: 1px solid;
     border-bottom: 1px solid;
-    margin-bottom: 80vh;
+    margin-bottom: 40vh;
   }
 
   pre{
