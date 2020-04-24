@@ -40,7 +40,7 @@ date,event,leader,vox,electric,acoustic,keys,bass,drums,strings,ukulele
 2018-04-16,creo_monday,Hannah,Phoebe,,Hannah; Phoebe,,DJ,Josiah,Janek; Mattias,
 2018-04-20,creo_friday,Holly,Liz,Pedro,Josh,Emily,Holly,David,,Liz
 2018-04-23,creo_monday,Liz,Josh,Chandler,Josh,Liz,Etana,David,,
-2018-04-30,creo_monday,Hannah; Caleb,Caleb E,Chandler,"Caleb E, Adrienne",Phoebe,Holly,Josiah,Gloria,
+2018-04-30,creo_monday,Hannah; Caleb,Caleb E,Chandler,Caleb E; Adrienne,Phoebe,Holly,Josiah,Gloria,
 2018-05-04,creo_friday,Liz,Holly,,Phil,Emily,Holly,David,,Liz
 2018-05-07,creo_monday,Xander; Holly,Holly; Xander,Caleb,Josh,David,Phoebe,Josiah,Janek; Mattias,
 2018-05-11,creo_friday,Holly,Liz,Pedro,Josh,Emily,Holly,David,,Liz
@@ -91,10 +91,15 @@ date,event,leader,vox,electric,acoustic,keys,bass,drums,strings,ukulele
 2019-11-18,ya_worship,Pedro,Etana,,Pedro,Etana,Mattias,David,Serena,
 2019-12-02,ya_worship,Xander; Holly,Josh; Etana,Atsu,Josh,Serena,Liz,David,,
 2019-12-06,exp_nght,Liz; Alne,,Pedro,Alne,Gloria,Mattias,David,,
-2020-01-06,ya_worship,Marylou; Alne,Liz,,Alne,Liz,Mattias,David,"Serena, Mattias",
-2020-01-10,exp_nght,Liz,Josh,Pedro,Josh,Liz; Serena,Mattias,David,"Serena, Mattias",
+2020-01-06,ya_worship,Marylou; Alne,Liz,,Alne,Liz,Mattias,David,Serena; Mattias,
+2020-01-10,exp_nght,Liz,Josh,Pedro,Josh,Liz; Serena,Mattias,David,Serena; Mattias,
 2020-01-20,ya_worship,Xander,Holly; Atsu,Atsu,Marylou,Etana,Jacqui,David,Gloria,
 2020-02-02,ya_worship,Humility & Hunger,Humility & Hunger,Humility & Hunger,Humility & Hunger,Humility & Hunger,Humility & Hunger,Humility & Hunger,,
 2020-02-07,exp_nght,Humility & Hunger,Humility & Hunger,Humility & Hunger,Humility & Hunger,Humility & Hunger,Humility & Hunger,Humility & Hunger,,
 2020-03-02,ya_worship,Holly,Xander; Etana,Atsu,,Serena,Jacqui,David,Gloria,
 2020-03-06,exp_nght,Liz,Josh,Pedro,Josh,Liz,Mattias,David,,
+2020-03-25,worship_wednesday,Marylou; Alne,,,Alne,,,,,
+2020-04-01,worship_wednesday,Marylou; Alne,,,Alne,,,,,
+2020-04-08,worship_wednesday,Marylou; Alne,,,Alne,,,,,
+2020-04-15,worship_wednesday,Colin,,,Colin,,,,,
+2020-04-22,worship_wednesday,Liz,,,,David,,,,Liz
