@@ -1,5 +1,5 @@
 # Creo Worship Visualized
-A data vis project in d3 for Creo Worship.  This is my dev diary!
+A data vis project in d3 for Creo Worship.  This is my dev diary.  For the live site, visit https://jordanmchiu.github.io/creo-worship-visualized/
 
 ## Background
 This project was started in April 2020 as a personal data visualization project.  Built entirely using JavaScript (d3, crossfilter, graph-scroll), HTML, and CSS, it shows (hopefully) interesting statistics on [Creo Worship](http://www.creopeople.ca/) and the songs and artists we've covered since Fall 2017.
@@ -184,6 +184,30 @@ setupArtistsAndSongsCounts() {
 
 ## The Song Chart
 Now that I had built up all the back-end data objects that I needed, it was time to start on the charts themselves.  I knew that I wanted to start with a simple bar chart to work with the songs data: the top ten songs of all time by number of times sung (with an optional event parameter to filter by).
+
+This was a fairly simple bar chart to implement.  I knew that I just wanted 10 songs to be displayed at one time, and there was no need for axis labels given that the data would be displayed directly on the chart in the format "Song Name: Number_of_plays".
+
+The trickiest part was figuring out how to facilitate both automated scrollytelling (where the data would change dynamically depending on which paragraph was active at the time) and the user's ability to select an event to filter by (the final stop along this scrollytelling journey).  I ended up creating an event listener using jQuery that would force the chart to identify which event was selected at a given time when the user made a selection.  First, I would set two internal variables to be `null` upon selection in `main.js`:
+```javascript
+$(document).ready(function()
+{
+  $("#form-event-selector").change(function()
+  {
+    songsChart.selectedEvent = null;
+    songsChart.internalIndex = null;
+    songsChart.update();
+  });
+});
+```
+Then I would update the internal variables in the `update()` method of `songsChart.js`:
+```javascript
+if (!vis.selectedEvent) {
+  vis.selectedEvent = $("input[name='event-selector']:checked").val();
+}
+if (!vis.internalIndex) {
+  vis.internalIndex = vis.events.indexOf(vis.selectedEvent);
+} 
+```
 
 ## Scratchpad
 Sources:
