@@ -34,8 +34,6 @@ class SongsChart extends Chart {
           }
           vis.update(); 
         });
-
-    console.log('initVis!');
   };
 
   update() {
@@ -49,7 +47,7 @@ class SongsChart extends Chart {
     if (!vis.internalIndex) {
       vis.internalIndex = vis.events.indexOf(vis.selectedEvent);
     } 
-    console.log(vis.internalIndex);
+
     vis.colorValue = vis.chartColors[vis.internalIndex];
     vis.dataToRender = dataObject.getTopTenSongsByEvent(vis.selectedEvent);
 

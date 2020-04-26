@@ -10,13 +10,17 @@ h3 {
 }
 
 .half-background {
-  background: linear-gradient(to top, transparent 25%, orange 25% 75%, transparent 75%);
+  background: linear-gradient(to top, transparent 30%, orange 30% 70%, transparent 70%);
 }
 
-.song-bar-label {
+.song-bar-label, .artist-bar-label {
   font-weight: 700;
   padding-left: 5px;
   mix-blend-mode: color-burn;
+}
+
+.artist-bar-label {
+  font-size: 1.5rem;
 }
 
 /* Custom radio button

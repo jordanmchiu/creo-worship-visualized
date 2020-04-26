@@ -182,7 +182,7 @@ setupArtistsAndSongsCounts() {
 }
 ```
 
-## The Song Chart
+## The Song and Artists Charts
 Now that I had built up all the back-end data objects that I needed, it was time to start on the charts themselves.  I knew that I wanted to start with a simple bar chart to work with the songs data: the top ten songs of all time by number of times sung (with an optional event parameter to filter by).
 
 This was a fairly simple bar chart to implement.  I knew that I just wanted 10 songs to be displayed at one time, and there was no need for axis labels given that the data would be displayed directly on the chart in the format "Song Name: Number_of_plays".
@@ -209,8 +209,13 @@ if (!vis.internalIndex) {
 } 
 ```
 
+I now had a working, responsive bar chart for songs!
+
 ![alt text](dev-diary/02-SongsChart.PNG "Barchart for Creo's favourite songs")
 
+I did a very similar thing for the top artists as well, but made this chart a vertical bar chart for variety:
+
+![alt text](dev-diary/03-ArtistsChart.PNG "Barhart for Creo's favourite artists")
 
 ## Scratchpad
 Sources:
