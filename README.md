@@ -209,6 +209,9 @@ if (!vis.internalIndex) {
 } 
 ```
 
+![alt text](dev-diary/02-SongsChart.PNG "Barchart for Creo's favourite songs")
+
+
 ## Scratchpad
 Sources:
 - Textures for d3: https://riccardoscalco.it/textures/
