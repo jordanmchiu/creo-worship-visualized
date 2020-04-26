@@ -24,7 +24,7 @@ function setup() {
   });
 
   artistsChart = new ArtistsChart({
-    parentElement: '#container-2 #chart-2',
+    parentElement: '#container-2 #artists-chart',
     width: width,
     height: height,
   });

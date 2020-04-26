@@ -158,20 +158,20 @@ class DataObject {
     return ret;
   }
 
-  // Return top ten artists of all time by total number of song plays
-  getTopTenArtistsByPlays() {
+  // Return top five artists of all time by total number of song plays
+  getTopFiveArtistsByPlays() {
     let dObj = this;
     let artistGroup = dObj.artistNameDimension.group();
-    return artistGroup.top(10);
+    return artistGroup.top(5);
   }
 
-  // Return top ten artists of all time by the number of different songs played
+  // Return top five artists of all time by the number of different songs played
   // There doesn't seem to be an easy way of doing this with crossfilter,
   // so I've implemented this in a brute-force way with helper functions in the
   // construction and initialization of the data object
-  getTopTenArtistsBySongs() {
+  getTopFiveArtistsBySongs() {
     let dObj = this;
-    return dObj.artistsAndSongsCounts.slice(0, 10);
+    return dObj.artistsAndSongsCounts.slice(0, 5);
   }
 
   // Return an object representing the total number of times we've had a band instrument.
