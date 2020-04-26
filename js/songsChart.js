@@ -34,8 +34,6 @@ class SongsChart extends Chart {
           }
           vis.update(); 
         });
-
-    console.log('initVis!');
   };
 
   update() {

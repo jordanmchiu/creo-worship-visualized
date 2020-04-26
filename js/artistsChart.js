@@ -29,8 +29,6 @@ class ArtistsChart extends Chart {
           }
           vis.update(); 
         });
-
-    console.log('initVis!');
   };
 
   update() {
