@@ -217,6 +217,12 @@ I did a very similar thing for the top artists as well, but made this chart a ve
 
 ![alt text](dev-diary/03-ArtistsChart.PNG "Barhart for Creo's favourite artists")
 
+## The Totals
+
+I knew that the donut charts related to the percentage composition of worship bands was going to be the most difficult element, so I wanted to start with a simpler element first: the "totals" data summary that showed up at the very bottom of the page.  
+
+I knew that I wanted the numbers to only appear as the user scrolled across different sections that elaborated on each of those numbers a bit.  I also wanted to make all the numbers visible when the users scrolled to the very bottom of the screen.
+
 ## Scratchpad
 Sources:
 - Textures for d3: https://riccardoscalco.it/textures/

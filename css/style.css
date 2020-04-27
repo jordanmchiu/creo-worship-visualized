@@ -34,6 +34,11 @@ h3 {
   font-size: 1.5rem;
 }
 
+#bottom-text {
+  text-align: center;
+  margin-bottom: 100px;
+}
+
 /* Custom radio button
 Taken from w3schools: https://www.w3schools.com/howto/howto_css_custom_checkbox.asp */
 .radio-button {
@@ -110,6 +115,8 @@ body {
 
 .container{
   position: relative;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 .sections{
@@ -132,7 +139,7 @@ body {
   width: 500px;
   position: -webkit-sticky;
   position: sticky;
-  top: 200px;
+  top: 150px;
   float: right;
 }
 

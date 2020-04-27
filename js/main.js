@@ -10,7 +10,7 @@ function setup() {
   oldWidth = innerWidth;
 
   let width = d3.select('.chart').node().offsetWidth;
-  let height = width;
+  let height = width - 100;
 
   if (innerWidth <= 925) {
     width  = innerWidth;

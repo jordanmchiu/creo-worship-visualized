@@ -8,9 +8,10 @@ class TotalsChart extends Chart {
       .attr('transform', `translate(${vis.config.margin.left / 5},${vis.config.margin.top / 3})`);
     // Define events and chart colours organized according to
     // the layout on the page
-    vis.activeSections = ['songs', 'artists', 'team', 'guests', 'sets'];
+    vis.activeSections = ['unique_songs', 'total_songs', 'artists', 'team', 'guests', 'sets'];
     vis.numbersToRender = [
       dataObject.getNumberOfUniqueSongs(),
+      dataObject.getNumberOfTotalSongs(),
       dataObject.getNumberOfUniqueArtists(),
       dataObject.getNumberOfBandMembers(),
       dataObject.getNumberOfEvents(),
@@ -19,6 +20,7 @@ class TotalsChart extends Chart {
     ];
     vis.textToRender = [
       'different songs played',
+      'total songs sung',
       'artists covered',
       'different band members',
       'worship sets played',
@@ -55,7 +57,7 @@ class TotalsChart extends Chart {
 
     let m = vis.config.margin;
 
-    // Render text
+    // Render numbers
     let summaryNumber = vis.g.selectAll('.summary-text-number')
         .data(vis.numbersToRender);
 
@@ -68,17 +70,7 @@ class TotalsChart extends Chart {
         .attr('dy', '.35em')
         .text((d, i) => vis.numbersToRender[i])
       .transition().duration(500)
-        .style('opacity', (d, i) => {
-          if (vis.internalIndex >= vis.activeSections.length) {
-            return '100%';
-          } else if (i !== vis.internalIndex) {
-            return '0%';
-          } else {
-            return '100%';
-          }
-        });
-
-    // summaryText.exit().remove();
+        .style('opacity', (d, i) => vis.getOpacity(d,i));
 
     // Render text
     let summaryText = vis.g.selectAll('.summary-text')
@@ -93,14 +85,17 @@ class TotalsChart extends Chart {
         .attr('dy', '.35em')
         .text((d, i) => vis.textToRender[i])
       .transition().duration(500)
-        .style('opacity', (d, i) => {
-          if (vis.internalIndex >= vis.activeSections.length) {
-            return '100%';
-          } else if (i !== vis.internalIndex) {
-            return '0%';
-          } else {
-            return '100%';
-          }
-        });
+        .style('opacity', (d, i) => vis.getOpacity(d,i));
+  }
+
+  getOpacity(d, i) {
+    let vis = this;
+    if (vis.internalIndex >= vis.activeSections.length) {
+      return '100%';
+    } else if (i !== vis.internalIndex) {
+      return '0%';
+    } else {
+      return '100%';
+    }
   }
 }
