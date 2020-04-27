@@ -10,7 +10,7 @@ function setup() {
   oldWidth = innerWidth;
 
   let width = d3.select('.chart').node().offsetWidth;
-  let height = width;
+  let height = width - 100;
 
   if (innerWidth <= 925) {
     width  = innerWidth;
@@ -29,8 +29,18 @@ function setup() {
     height: height,
   });
 
+
+
+  totalsChart = new TotalsChart({
+    parentElement: '#container-4 #totals-chart',
+    width: width,
+    height: height,
+  });
+
   songsChart.initVis();
   artistsChart.initVis();
+
+  totalsChart.initVis();
 
   // An admittedly hacky way to allow space at the bottom to make sure
   // you can scroll beyond the bottom edge of the page
@@ -44,6 +54,7 @@ function setup() {
 d3.select(window).on('resize', () => {
   songsChart.update();
   artistsChart.update();
+  totalsChart.update();
 });
 
 dataObject = new DataObject([

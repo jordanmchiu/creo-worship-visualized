@@ -186,6 +186,11 @@ class DataObject {
     return dObj.eventData.length;
   }
 
+  getNumberOfTotalSongs() {
+    let dObj = this;
+    return dObj.songData.length;
+  }
+
   // Return the total number of different songs ever played
   getNumberOfUniqueSongs() {
     let dObj = this;
