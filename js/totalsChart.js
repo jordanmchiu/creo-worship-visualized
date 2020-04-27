@@ -27,6 +27,12 @@ class TotalsChart extends Chart {
       'guest leaders',
     ];
 
+    let m = vis.config.margin;
+
+    vis.yScale = d3.scalePoint()
+      .domain(vis.activeSections)
+      .range([0 + m.top * 5, vis.height - m.bottom * 5]);
+
     vis.internalIndex = 0;
     let gs = d3.graphScroll()
         .container(d3.select('#container-4'))
@@ -42,12 +48,6 @@ class TotalsChart extends Chart {
 
   update() {
     let vis = this;
-
-    let m = vis.config.margin;
-
-    vis.yScale = d3.scalePoint()
-      .domain(vis.activeSections)
-      .range([0 + m.top * 5, vis.height - m.bottom * 5]);
 
     vis.render();
   }

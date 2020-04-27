@@ -221,7 +221,36 @@ I did a very similar thing for the top artists as well, but made this chart a ve
 
 I knew that the donut charts related to the percentage composition of worship bands was going to be the most difficult element, so I wanted to start with a simpler element first: the "totals" data summary that showed up at the very bottom of the page.  
 
-I knew that I wanted the numbers to only appear as the user scrolled across different sections that elaborated on each of those numbers a bit.  I also wanted to make all the numbers visible when the users scrolled to the very bottom of the screen.
+I knew that I wanted the numbers to only appear as the user scrolled across different sections that elaborated on each of those numbers a bit.  I also wanted to make all the numbers visible when the user scrolled to the very bottom of the page.
+
+By placing all of the dynamically-generated text inside an SVG element, I was able to use d3 to control the spacing and opacity of the text using scroll events:
+
+```javascript
+// Spacing with scalePoint:
+vis.yScale = d3.scalePoint()
+  .domain(vis.activeSections)
+  .range([0 + m.top * 5, vis.height - m.bottom * 5]);
+
+// Rendering numbers on the svg:
+summaryNumber.enter().append('text')
+  .merge(summaryNumber)
+    .attr('class', 'summary-text-number')
+    .attr('text-anchor', 'left')
+    .attr('x', 20)
+    .attr('y', (d, i) => vis.yScale(vis.activeSections[i]))
+    .attr('dy', '.35em')
+    .text((d, i) => vis.numbersToRender[i])
+  .transition().duration(500)
+    .style('opacity', (d, i) => vis.getOpacity(d,i));
+```
+
+Now, only specific lines of text would be visible when scrolling through the first few sections:
+
+![alt text](dev-diary/04a-TotalsHidden.PNG "Hidden text on the Totals chart")
+
+And all the text woul dbe visible at the bottom of the page:
+
+![alt text](dev-diary/04b-TotalsVisible.PNG "Visible text for the totals chart")
 
 ## Scratchpad
 Sources:
