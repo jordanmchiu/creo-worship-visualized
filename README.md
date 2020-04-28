@@ -248,9 +248,13 @@ Now, only specific lines of text would be visible when scrolling through the fir
 
 ![alt text](dev-diary/04a-TotalsHidden.PNG "Hidden text on the Totals chart")
 
-And all the text woul dbe visible at the bottom of the page:
+And all the text would be visible at the bottom of the page:
 
 ![alt text](dev-diary/04b-TotalsVisible.PNG "Visible text for the totals chart")
+
+## The Band Chart
+
+
 
 ## Scratchpad
 Sources:

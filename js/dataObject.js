@@ -175,9 +175,24 @@ class DataObject {
   }
 
   // Return an object representing the total number of times we've had a band instrument.
+  // Meant to mimic the structure of a d3 nested object.  An array of objects like:
+  // {key: 'vocals', values: [102, 2]} where values[0] = number of times we've had a
+  // person in that role and values[1] = number of times we've had a worship set
+  // without a person in that role.
   getBandNumbers() {
     let dObj = this;
-    return dObj.bandNumbers;
+    let ret = [];
+    let totalEvents = dObj.getNumberOfEvents();
+    bandRoles.forEach(role => {
+      ret.push({
+        'key': role,
+        'values': [
+          dObj.bandNumbers[role],
+          totalEvents - dObj.bandNumbers[role]
+        ]
+      })
+    });
+    return ret;
   }
 
   // Return the total number of events (i.e. worship sets) played
