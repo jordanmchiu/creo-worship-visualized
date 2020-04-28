@@ -10,13 +10,14 @@ class BandChart extends Chart {
     // the layout on the page
 
     vis.dataToRender = dataObject.getBandNumbers();
+    vis.totalEvents  = dataObject.getNumberOfEvents();
 
     vis.primaryColor   = '#00b395';
     vis.secondaryColor = 'none';
     vis.colors         = [vis.primaryColor, vis.secondaryColor];
 
-    vis.outerRadius = 50;
-    vis.innerRadius = vis.outerRadius * 2 / 3;
+    vis.outerRadius = 60;
+    vis.innerRadius = vis.outerRadius * 5 / 6;
 
     vis.pie = d3.pie()
       .value(d => d)
@@ -72,6 +73,30 @@ class BandChart extends Chart {
         .attr('d', vis.arc)
         .attr('fill', (d, i) => vis.colors[i]);
     slices.exit().remove();
+
+    // TODO: Append information text and/or icons to the centre of each donut
+    // Numbers indicate % of times we have an instrument
+    let circleText = vis.g.selectAll('.pie').data(vis.dataToRender).selectAll('.circle-text')
+      .data(d => [d]);
+
+    let circleTextAppend = circleText.enter().append('text');
+    circleTextAppend
+      .merge(circleText)
+        .attr('class', 'circle-text')
+        .attr('text-anchor', 'middle')
+        .attr('x', 0)
+        .attr('y', - vis.outerRadius / 2)
+        .attr('dy', '.35em')
+    circleTextAppend.append('tspan')
+      .merge(circleTextAppend)
+        .attr('x', 0)
+        .attr('dy', '1.2em')
+        .text(d => (d.key === 'vox') ? 'backing' : d.key)
+    circleTextAppend.append('tspan')
+      .merge(circleTextAppend)
+        .attr('x', 0)
+        .attr('dy', '1.2em')
+        .text(d => Math.round(d.values[0] * 100 / vis.totalEvents) + '%');
   }
 
   // Given a position in the array between [0,8], return the desired
@@ -79,16 +104,28 @@ class BandChart extends Chart {
   getPosition(i) {
     let vis = this;
     let xPos = (i % 3 === 0)
-      ? vis.width / 4
+      ? vis.width / 6
       : (i % 3 === 1)
         ? vis.width / 2
-        : vis.width * 3/4;
+        : vis.width * 5/6;
     let yPos = (i <= 2)
-      ? vis.height / 4
+      ? vis.height / 6
       : (i <= 5)
         ? vis.height / 2
-        : vis.height * 3/4;
+        : vis.height * 5/6;
 
     return 'translate(' + xPos + ',' + yPos + ')';
+  }
+
+  // Given a data point in the form:
+  // { key: instrumentName,
+  //   values: [count_played, count_not_played] }
+  // return a string representing the data in a human-readable format
+  getDataString(d) {
+    let vis = this;
+    return d.key 
+      + '\n'
+      + Math.round(d.values[0] * 100 / vis.totalEvents)
+      + '%';
   }
 }

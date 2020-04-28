@@ -32,7 +32,7 @@ function setup() {
   bandChart = new BandChart({
     parentElement: '#container-3 #band-chart',
     width: width,
-    height: height,
+    height: width, // Keep height and width equal for this chart
   });
 
   totalsChart = new TotalsChart({
