@@ -20,7 +20,7 @@ class TotalsChart extends Chart {
     ];
     vis.textToRender = [
       'different songs played',
-      'total songs sung',
+      'songs sung (incl. repeats)',
       'artists covered',
       'different band members',
       'worship sets played',
