@@ -8,10 +8,10 @@ class TotalsChart extends Chart {
       .attr('transform', `translate(${vis.config.margin.left / 5},${vis.config.margin.top / 3})`);
     // Define events and chart colours organized according to
     // the layout on the page
-    vis.activeSections = ['unique_songs', 'total_songs', 'artists', 'team', 'guests', 'sets'];
+    vis.activeSections = ['total_songs', 'unique_songs', 'artists', 'team', 'guests', 'sets'];
     vis.numbersToRender = [
-      dataObject.getNumberOfUniqueSongs(),
       dataObject.getNumberOfTotalSongs(),
+      dataObject.getNumberOfUniqueSongs(),
       dataObject.getNumberOfUniqueArtists(),
       dataObject.getNumberOfBandMembers(),
       dataObject.getNumberOfEvents(),
@@ -19,8 +19,8 @@ class TotalsChart extends Chart {
       ''
     ];
     vis.textToRender = [
+      'songs sung',
       'different songs played',
-      'songs sung (incl. repeats)',
       'artists covered',
       'different band members',
       'worship sets played',
