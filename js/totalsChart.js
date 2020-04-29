@@ -20,7 +20,7 @@ class TotalsChart extends Chart {
     ];
     vis.textToRender = [
       'different songs played',
-      'total songs sung',
+      'songs sung (incl. repeats)',
       'artists covered',
       'different band members',
       'worship sets played',
@@ -84,7 +84,7 @@ class TotalsChart extends Chart {
         .attr('y', (d, i) => vis.yScale(vis.activeSections[i]))
         .attr('dy', '.35em')
         .text((d, i) => vis.textToRender[i])
-      .transition().duration(500)
+      .transition()
         .style('opacity', (d, i) => vis.getOpacity(d,i));
   }
 

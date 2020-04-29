@@ -1,0 +1,81 @@
+/* CSS taken from graph-scroll demo */
+
+body {
+  max-width: 900px;
+  margin: 0px auto;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 300;
+}
+
+.container{
+  position: relative;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.sections{
+  width: 340px;
+}
+
+.sections > div{
+  opacity: .2;
+  margin-bottom: 300px;
+}
+.sections > div:last-child{
+  margin-bottom: 500px;
+}
+.sections > div.graph-scroll-active{
+  opacity: 1;
+}
+
+.chart{
+  margin-left: 40px;
+  width: 500px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 150px;
+  float: right;
+}
+
+@media (max-width: 925px)  {
+  .chart{
+    width: 100%;
+    margin-left: 0px;
+    float: none;
+  }
+
+  .sections{
+    width: auto;
+    position: relative;
+    margin: 0px auto;
+  }
+
+  .sections > div{
+    background: rgba(255,255,255,.5);
+    padding: 10px;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    margin-bottom: 40vh;
+  }
+
+  pre{
+    overflow: hidden;
+  }
+
+  h1{
+    margin: 10px;
+  }
+}
+
+
+circle{
+  fill: steelblue;
+}
+
+.mono{
+  font-family: monospace;
+}
+
+svg{
+  background-color: #eee;
+}

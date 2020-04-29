@@ -248,9 +248,122 @@ Now, only specific lines of text would be visible when scrolling through the fir
 
 ![alt text](dev-diary/04a-TotalsHidden.PNG "Hidden text on the Totals chart")
 
-And all the text woul dbe visible at the bottom of the page:
+And all the text would be visible at the bottom of the page:
 
 ![alt text](dev-diary/04b-TotalsVisible.PNG "Visible text for the totals chart")
+
+## The Band Chart
+
+The final and most tricky thing to do was to add donut charts for each band element.  There were 9 elements to display, so arranging the donut charts on an blank SVG was easy: I simply placed them in a 3 by 3 grid.  To do this, I made a method called `getPosition()` that helped me arrange the centre of each donut roughly equally across the plane:
+
+```javascript
+getPosition(i) {
+  let vis = this;
+  let xPos = (i % 3 === 0)
+    ? vis.width / 6
+    : (i % 3 === 1)
+      ? vis.width / 2
+      : vis.width * 5/6;
+  let yPos = (i <= 2)
+    ? vis.height / 6
+    : (i <= 5)
+      ? vis.height / 2
+      : vis.height * 5/6;
+
+  return 'translate(' + xPos + ',' + yPos + ')';
+}
+```
+
+Creating small multiples of donut charts proved to be a little trickier than expected.  I knew that I had to create a pie chart using `d3.pie()` and arcs with `d3.arc()`, but I ran into some strange issues that I couldn't quite work out.
+
+I started by creating a separate group element for each pie:
+```javascript
+let pies = vis.g.selectAll('.pie')
+    .data(vis.dataToRender);
+
+pies.enter().append('g')
+  .merge(pies)
+    .attr('class', 'pie')
+    .attr('transform', (d, i) => vis.getPosition(i));
+
+pies.exit().remove();
+```
+
+Then I tried to position my slices as follows:
+```javascript
+let slices = pies.selectAll('path').data(d => vis.pie(d.values));
+
+slices.enter().append('path')
+  .merge(slices)
+    ...
+```
+
+But I found that I would get a mysterious error: `slices.enter(...).append(...) is not a function`.  But when I positioned my slices by calling `vis.g.selectAll()` on all the `.pie` elements directly, the error disappeared:
+```javascript
+// let slices = pies.selectAll('path').data(d => vis.pie(d.values));
+// For whatever reason, the above call does not work, but the one below does.
+let slices = vis.g.selectAll('.pie').data(vis.dataToRender).selectAll('path')
+  .data(d => vis.pie(d.values));
+
+slices.enter().append('path')
+  .merge(slices)
+    ...
+```
+
+After this fix, I had donuts appearing at each desired place on the chart.
+
+Finally, I had to ascribe some meaning to these tasty donuts.  I wanted to add three things to the middle of each donut: an icon depicting the instrument being played, the name of the instrument in a text element, and a percentage representing how often we have that instrument in the band.
+
+The icons that I wanted to display were the ones I used for my other Creo project, [Creo Worship Tech](https://creoworship.github.io/).  I collected all the svg files for the icons that I needed and placed them at the centre of each donut by appending an `image` element to each pie:
+```javascript
+// Append information icons to the centre of each donut
+let icons = vis.g.selectAll('.pie').data(vis.dataToRender).selectAll('image')
+  .data(d => [d]);
+
+icons.enter().append('image')
+  .merge(icons)
+    .attr('xlink:href', d => vis.getIcon(d))
+    .attr('x', -vis.iconSize / 2)
+    .attr('y', -vis.iconSize)
+    .attr('width', vis.iconSize)
+    .attr('height', vis.iconSize);
+```
+
+I could place the text in a similar fashion to the icons.  But in order to introduce a line break
+into each text element, I needed to place the instrument name and percentage in different `tspan` elements, since svg `text` elements do not contain line breaks in themselves.
+
+```javascript
+// Numbers indicate % of times we have an instrument
+let circleText = vis.g.selectAll('.pie').data(vis.dataToRender).selectAll('.circle-text')
+  .data(d => [d]);
+
+let circleTextAppend = circleText.enter().append('text');
+circleTextAppend
+  .merge(circleText)
+    .attr('class', 'circle-text')
+    .attr('text-anchor', 'middle')
+    .attr('x', 0)
+    .attr('y', 0)
+    .attr('dy', '.35em')
+circleTextAppend.append('tspan')
+  .merge(circleTextAppend)
+    .attr('x', 0)
+    .attr('dy', '1.2em')
+    .text(d => (d.key === 'vox') ? 'backing' : d.key)
+circleTextAppend.append('tspan')
+  .merge(circleTextAppend)
+    .attr('x', 0)
+    .attr('dy', '1.2em')
+    .text(d => Math.round(d.values[0] * 100 / vis.totalEvents) + '%');
+```
+
+And finally, I had my donuts!
+
+![alt text](dev-diary/05-BandChart.PNG "Donut charts for band composition")
+
+## Future Considerations
+
+While this project has reached an end point, there are still many ways I could go with this.  I will try to continue updating the data for Creo's worship sets as we go, and I'll jot down some feature requests and/or my own ideas to impelement down the line.
 
 ## Scratchpad
 Sources:

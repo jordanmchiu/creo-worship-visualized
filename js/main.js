@@ -2,7 +2,7 @@ let oldWidth = 0;
 
 let songsChart;
 let artistsChart;
-
+let bandChart;
 let dataObject;
 
 function setup() {
@@ -29,7 +29,11 @@ function setup() {
     height: height,
   });
 
-
+  bandChart = new BandChart({
+    parentElement: '#container-3 #band-chart',
+    width: width,
+    height: width, // Keep height and width equal for this chart
+  });
 
   totalsChart = new TotalsChart({
     parentElement: '#container-4 #totals-chart',
@@ -39,7 +43,7 @@ function setup() {
 
   songsChart.initVis();
   artistsChart.initVis();
-
+  bandChart.initVis();
   totalsChart.initVis();
 
   // An admittedly hacky way to allow space at the bottom to make sure
@@ -54,6 +58,7 @@ function setup() {
 d3.select(window).on('resize', () => {
   songsChart.update();
   artistsChart.update();
+  bandChart.update();
   totalsChart.update();
 });
 

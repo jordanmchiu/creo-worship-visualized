@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-164896454-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-164896454-1');
+    </script>
+
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;700&display=swap" rel="stylesheet">
 
     <!-- Required meta tags -->
@@ -8,7 +19,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>Creo Worship Visualized</title>
+
+    <!-- OPTIONAL: description -->
+    <meta name="description" content="Creo Worship Visualized">
+    <!-- OPTIONAL: author -->
+    <meta name="author" content="Jordan Chiu">
+    <meta name="copyright" content="Jordan Chiu 2020">
+    <!-- <meta property="og:image" content="https://raw.githubusercontent.com/creoworship/creoworship.github.io/master/assets/images/site-preview.PNG"> -->
+    <meta property="og:site_name" content="Creo Worship Visualized">
+    <meta property="og:title" content="Creo Worship Visualized">
+    <meta property="og:url" content="https://jordanmchiu.github.io/creo-worship-visualized/">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="Creo Worship Visualized">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="assets/favicon/site.webmanifest">
+    <link rel="mask-icon" href="assets/favicon/safari-pinned-tab.svg" color="#000000">
+    <link rel="shortcut icon" href="assets/favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-config" content="assets/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#000000">
+
+    <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/radio-button.css">
+    <link rel="stylesheet" href="css/graph-scroll.css">
   </head>
 
   <body class="bg-light">
@@ -141,13 +179,19 @@
     </div>
 
     <div class="container" id="container-3">
-      <div id="chart-3" class="chart"></div>
+      <div id="band-chart" class="chart"></div>
 
       <div class="sections">
         <div>
           <h3>THE BAND</h3>
-          <h5>Who plays what, when?</h5>
-          <span class="body-text"></span>
+          <h5>How often do we have each instrument?</h5>
+          <span class="body-text">
+            It can be difficult (but not impossible!) to have worship without a worship leader, so it's not surpsising that we've had a leader at 100% of our worship events.
+            <br><br>
+            We almost always also have backing vocals, acoustic guitar, keys, drums, and bass as well: about 90% of our worship events have these band members.
+            <br><br>
+            Over three-quarters of our worship sets have someone shredding on the electric!  Less common instruments include strings (cello and violin for more acoustic worship nights) and ukulele, which was popular for Creo Fridays before EXP NGHT started up.
+          </span>
         </div>
       </div>
     </div>
@@ -228,12 +272,12 @@
 
     <div id="bottom-text" class="container">
       <div>A project by Jordan Chiu.  <a href="https://github.com/jordanmchiu/creo-worship-visualized" target="_blank">Dev Diary</a></div>
+      <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
       <div>Based on <a href="https://github.com/1wheel/graph-scroll">graph-scroll</a> by Adam Pearce</div>
     </div>
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.js"></script>
-  <!-- <script src="assets/d3v4+jetpack.js"></script> -->
   <script src="assets/graph-scroll.js"></script>
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> 
@@ -242,7 +286,7 @@
   <script src="js/chart.js"></script>
   <script src="js/songsChart.js"></script>
   <script src="js/artistsChart.js"></script>
-  <!-- <script src="js/bandChart.js"></script> -->
+  <script src="js/bandChart.js"></script>
   <script src="js/totalsChart.js"></script>
   <script src="js/dataObject.js"></script>
   <script src="js/main.js"></script>
