@@ -18,6 +18,7 @@ class BandChart extends Chart {
 
     vis.outerRadius = 60;
     vis.innerRadius = vis.outerRadius * 5 / 6;
+    vis.iconSize    = vis.innerRadius * 2 / 3;
 
     vis.pie = d3.pie()
       .value(d => d)
@@ -74,7 +75,18 @@ class BandChart extends Chart {
         .attr('fill', (d, i) => vis.colors[i]);
     slices.exit().remove();
 
-    // TODO: Append information text and/or icons to the centre of each donut
+    // Append information icons to the centre of each donut
+    let icons = vis.g.selectAll('.pie').data(vis.dataToRender).selectAll('image')
+      .data(d => [d]);
+
+    icons.enter().append('image')
+      .merge(icons)
+        .attr('xlink:href', d => vis.getIcon(d))
+        .attr('x', -vis.iconSize / 2)
+        .attr('y', -vis.iconSize)
+        .attr('width', vis.iconSize)
+        .attr('height', vis.iconSize);
+
     // Numbers indicate % of times we have an instrument
     let circleText = vis.g.selectAll('.pie').data(vis.dataToRender).selectAll('.circle-text')
       .data(d => [d]);
@@ -85,7 +97,7 @@ class BandChart extends Chart {
         .attr('class', 'circle-text')
         .attr('text-anchor', 'middle')
         .attr('x', 0)
-        .attr('y', - vis.outerRadius / 2)
+        .attr('y', 0)
         .attr('dy', '.35em')
     circleTextAppend.append('tspan')
       .merge(circleTextAppend)
@@ -120,12 +132,37 @@ class BandChart extends Chart {
   // Given a data point in the form:
   // { key: instrumentName,
   //   values: [count_played, count_not_played] }
-  // return a string representing the data in a human-readable format
-  getDataString(d) {
-    let vis = this;
-    return d.key 
-      + '\n'
-      + Math.round(d.values[0] * 100 / vis.totalEvents)
-      + '%';
+  // return the file path of the desired icon
+  getIcon(d) {
+    let iconPath  = './assets/icons/';
+    let fileName  = '';
+    let extension = '.svg';
+    switch(d.key) {
+      case 'leader':
+      case 'vox':
+        fileName = 'microphone';
+        break;
+      case 'acoustic':
+        fileName = 'acoustic';
+        break;
+      case 'keys':
+        fileName = 'keys';
+        break;
+      case 'electric':
+        fileName = 'electric';
+        break;
+      case 'drums':
+        fileName = 'drums';
+        break;
+      case 'bass':
+        fileName = 'bass';
+        break;
+      case 'strings':
+        fileName = 'violin';
+        break;
+      default: // case: 'ukulele'
+        fileName = 'ukulele';
+    }
+    return iconPath + fileName + extension;
   }
 }
