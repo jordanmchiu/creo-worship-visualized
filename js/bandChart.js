@@ -5,7 +5,6 @@ class BandChart extends Chart {
     let vis = this;
 
     vis.g = vis.svg.append('g')
-      .attr('transform', `translate(${vis.config.margin.left / 5},${vis.config.margin.top / 3})`);
     // Define events and chart colours organized according to
     // the layout on the page
 

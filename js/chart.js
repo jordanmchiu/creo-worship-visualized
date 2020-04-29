@@ -22,7 +22,6 @@ class Chart {
       	.attr('width', vis.width);
 
     vis.gsOffset = window.innerHeight / 5;
-    // vis.gsOffset = 0;
     // If there's anything else that relates to all components, we should handle it here.
   }
 }

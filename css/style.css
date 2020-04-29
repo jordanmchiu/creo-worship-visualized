@@ -5,6 +5,10 @@ h1 {
   margin: 50px;
 }
 
+#top-title h5{
+  text-align: center;
+}
+
 h3 {
   text-align: center;
 }
@@ -30,13 +34,13 @@ h3 {
 
 .summary-text-number {
   font-weight: 700;
-  font-size: 4rem;
+  font-size: 3rem;
   fill: #993399;
 }
 
 .summary-text {
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 
 #bottom-text {

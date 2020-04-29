@@ -20,6 +20,7 @@ body {
 .sections > div{
   opacity: .2;
   margin-bottom: 300px;
+  padding-left: 10px;
 }
 .sections > div:last-child{
   margin-bottom: 500px;
@@ -38,10 +39,12 @@ body {
 }
 
 @media (max-width: 925px)  {
+
   .chart{
     width: 100%;
     margin-left: 0px;
     float: none;
+    top: 10px;
   }
 
   .sections{

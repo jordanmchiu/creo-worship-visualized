@@ -13,8 +13,8 @@ function setup() {
   let height = width - 100;
 
   if (innerWidth <= 925) {
-    width  = innerWidth;
-    height = innerHeight * 0.7;
+    width  = window.innerWidth;
+    height = window.innerHeight * 0.5;
   }
 
   songsChart = new SongsChart({

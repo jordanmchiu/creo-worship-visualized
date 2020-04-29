@@ -6,7 +6,7 @@ class SongsChart extends Chart {
     let vis = this;
 
     vis.g = vis.svg.append('g')
-      .attr('transform', `translate(${vis.config.margin.left / 3},${vis.config.margin.top / 3})`);
+      .attr('transform', `translate(${vis.config.margin.left / 3},0)`);
     // Define events and chart colours organized according to
     // the layout on the page
     vis.selectedEvent = null;
