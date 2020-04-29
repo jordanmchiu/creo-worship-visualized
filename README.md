@@ -365,6 +365,8 @@ And finally, I had my donuts!
 
 While this project has reached an end point, there are still many ways I could go with this.  I will try to continue updating the data for Creo's worship sets as we go, and I'll jot down some feature requests and/or my own ideas to impelement down the line.
 
+- "Number of band members who play each role could be fun" - DY
+
 ## Scratchpad
 Sources:
 - Textures for d3: https://riccardoscalco.it/textures/
