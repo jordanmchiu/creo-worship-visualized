@@ -231,6 +231,6 @@ class DataObject {
   // guest worship leaders at Creo since 2017.  We might change this
   // later, but we'll keep it like this for now.
   getNumberOfGuestLeaders() {
-    return 3;
+    return 5;
   }
 }
